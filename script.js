@@ -1,7 +1,7 @@
 var board,
 	canvas;
 
-canvas = document.getElementById("canvas")
+canvas = document.getElementById("canvas");
 
 board = function() {
 	var ctx = canvas.getContext('2d'),
@@ -24,12 +24,27 @@ board = function() {
 	}
 
 	return {
-		darw: draw,
-		update: update;
+		draw: draw,
+		update: update
 	}
 
-});
+};
 
-function init() {
+function loopIt() {
+	var frameID = 0,
+		lastFrame = Date.now();
 
+	function loop() {
+		var thisFrame = Date.now(),
+			elapsed = thisFrame - lastFrame;
+
+		console.log(elapsed);
+		lastFrame = thisFrame;
+
+		frameID = window.requestAnimationFrame(loop);
+	}
+
+	loop();
 }
+
+loopIt();
