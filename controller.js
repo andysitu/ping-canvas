@@ -10,7 +10,13 @@ controller = (function(){
 		boardWidth: 60,
 		boardHeight: 15,
 		width: canvas.width,
-		height: canvas.height
+		height: canvas.height,
+		xBall: 20,
+		yBall: 20,
+		vx: 5,
+		vy: 2,
+		radius: 15,
+		fullPI: 2* Math.PI
 	};
 
 	values["yPoint"] = values.height - values.boardHeight;
@@ -23,12 +29,12 @@ controller = (function(){
 	function update(elapsed) {
 		board.update(values, elapsed, moveValue);
 		moveValue = 0;
-		ball.update(elapsed);
+		ball.update(values, elapsed);
 	}
 
 	function draw(ctx) {
 		clearBoard(ctx);
-		ball.draw(ctx);
+		ball.draw(values, ctx);
 		board.draw(values, ctx);
 	}
 

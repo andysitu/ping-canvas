@@ -1,31 +1,23 @@
 ball = (function() {
 
-	var x = 20,
-		y = 20,
-		vx = 5,
-		vy = 2,
-		width = canvas.width,
-		height = canvas.height,
-		radius = 15,
-		fullPI = 2* Math.PI;
 
-	function draw(ctx){
+	function draw(obj, ctx){
 		ctx.save();
 		ctx.fillStyle = 'red';
 		ctx.beginPath();
-		ctx.arc(x, y, radius, 0, fullPI, true);
+		ctx.arc(obj.xBall, obj.yBall, obj.radius, 0, obj.fullPI, true);
 		ctx.fill();
 		ctx.restore();
 	}
 
-	function update(elapsed) {
-		x += vx;
-		y += vy;
+	function update(obj, elapsed) {
+		obj.xBall += obj.vx;
+		obj.yBall += obj.vy;
 
-		if (y + vy > height || y + vy < 0) {
-          vy = -vy;
-        } else if (x + vx > width || x + vx < 0) {
-          vx = - vx;
+		if (obj.yBall + obj.vy > obj.height || obj.yBall + obj.vy < 0) {
+          obj.vy = -obj.vy;
+        } else if (obj.xBall + obj.vx > obj.width || obj.xBall + obj.vx < 0) {
+          obj.vx = - obj.vx;
 		}
 	}
 
