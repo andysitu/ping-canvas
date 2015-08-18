@@ -32,14 +32,18 @@ board = function() {
 
 function loopIt() {
 	var frameID = 0,
-		lastFrame = Date.now();
+		lastFrame = Date.now(),
+		frameLength = 33;
 
 	function loop() {
 		var thisFrame = Date.now(),
 			elapsed = thisFrame - lastFrame;
 
-		console.log(elapsed);
-		lastFrame = thisFrame;
+		if (elapsed >= frameLength) {
+
+			console.log(elapsed);
+			lastFrame = thisFrame;
+		}
 
 		frameID = window.requestAnimationFrame(loop);
 	}
