@@ -10,7 +10,7 @@ surface = canvas.getContext('2d');
 board = (function() {
 	var	x = 0,
 		y = 0,
-		speed = 15,
+		speed = 20,
 		boardWidth = 40,
 		boardHeight = 15,
 		width = canvas.width,
@@ -19,7 +19,6 @@ board = (function() {
 		maxX = width - boardWidth;
 
 	function draw(ctx) {
-		ctx.clearRect(0, 0, width, height);
 		ctx.fillRect(x, yPoint, boardWidth, boardHeight);
 	}
 
@@ -40,7 +39,13 @@ board = (function() {
 })();
 
 controller = (function(){
-	var moveValue = 0;
+	var moveValue = 0,
+	width = canvas.width,
+	height = canvas.height;
+
+	function clearBoard(ctx) {
+		ctx.clearRect(0, 0, width, height);
+	}
 
 	function update(elapsed) {
 		board.update(elapsed, moveValue);
@@ -48,6 +53,7 @@ controller = (function(){
 	}
 
 	function draw(ctx) {
+		clearBoard(ctx);
 		board.draw(ctx);
 	}
 
