@@ -7,13 +7,10 @@ function loopIt() {
 		var thisFrame = Date.now(),
 			elapsed = thisFrame - lastFrame;
 
-		if (elapsed >= frameLength) {
+		controller.update(elapsed);
+		controller.draw(surface);
 
-			controller.update(elapsed);
-			controller.draw(surface);
-
-			lastFrame = thisFrame;
-		}
+		lastFrame = thisFrame;
 
 		frameID = window.requestAnimationFrame(loop);
 	}
