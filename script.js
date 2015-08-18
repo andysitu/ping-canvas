@@ -14,17 +14,22 @@ board = (function() {
 		boardWidth = 40,
 		boardHeight = 15,
 		width = canvas.width,
-		height = canvas.height;
+		height = canvas.height,
+		yPoint = height - boardHeight,
+		maxX = width - boardWidth;
 
 	function draw(ctx) {
-		var yPoint = height - boardHeight;
 		ctx.clearRect(0, 0, width, height);
-		ctx.beginPath();
 		ctx.fillRect(x, yPoint, boardWidth, boardHeight);
 	}
 
 	function update(elapsed, moveValue) {
 		x += moveValue * (elapsed / 1000) * speed * boardWidth;
+		if (x < 0) {
+			x = 0;
+		} else if (x > maxX) {
+			x = maxX;
+		}
 	}
 
 	return {
