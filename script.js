@@ -1,11 +1,13 @@
 var board,
-	canvas;
+	canvas,
+	controller,
+	surface;
 
 canvas = document.getElementById("canvas");
+surface = canvas.getContext('2d');
 
-board = function() {
-	var ctx = canvas.getContext('2d'),
-		x = 0,
+board = (function() {
+	var	x = 0,
 		y = 0,
 		speed = 5,
 		boardWidth = 40,
@@ -13,7 +15,7 @@ board = function() {
 		width = canvas.width,
 		height = canvas.height;
 
-	function draw() {
+	function draw(ctx) {
 		var yPoint = height - boardHeight;
 		ctx.beginPath();
 		ctx.fillRect(x, yPoint, boardWidth, boardHeight);
@@ -28,7 +30,23 @@ board = function() {
 		update: update
 	}
 
-};
+})();
+
+controller = (function(){
+
+	function draw(ctx) {
+		board.draw(ctx);
+	}
+
+	function update(elapsed) {
+		board.update(elapsed);
+	}
+
+	return {
+		draw: draw,
+		update: update
+	};
+})();
 
 function loopIt() {
 	var frameID = 0,
@@ -41,7 +59,9 @@ function loopIt() {
 
 		if (elapsed >= frameLength) {
 
-			console.log(elapsed);
+			controller.update(elapsed);
+			controller.draw(surface);
+
 			lastFrame = thisFrame;
 		}
 
