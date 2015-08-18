@@ -10,7 +10,7 @@ surface = canvas.getContext('2d');
 board = (function() {
 	var	x = 0,
 		y = 0,
-		speed = 5,
+		speed = 15,
 		boardWidth = 40,
 		boardHeight = 15,
 		width = canvas.width,
@@ -23,8 +23,8 @@ board = (function() {
 		ctx.fillRect(x, yPoint, boardWidth, boardHeight);
 	}
 
-	function update(elapsed, moveValue) {
-		x += moveValue * (elapsed / 1000) * speed * boardWidth;
+	function update(elapsed, moveDir) { // 1 for right, -1 for left
+		x += moveDir * speed;
 		if (x < 0) {
 			x = 0;
 		} else if (x > maxX) {
@@ -52,9 +52,7 @@ controller = (function(){
 	}
 
 	function movement(value){
-		if (typeof value === 'number') {
-			moveValue += value;
-		}
+		moveValue = value;
 	}
 
 	return {
