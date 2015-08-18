@@ -10,6 +10,7 @@ controller = (function(){
 	function update(elapsed) {
 		board.update(elapsed, moveValue);
 		moveValue = 0;
+		ball.update(elapsed);
 	}
 
 	function draw(ctx) {
