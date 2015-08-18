@@ -1,7 +1,8 @@
 var board,
 	canvas,
 	controller,
-	surface;
+	surface,
+	key;
 
 canvas = document.getElementById("canvas");
 surface = canvas.getContext('2d');
@@ -17,12 +18,13 @@ board = (function() {
 
 	function draw(ctx) {
 		var yPoint = height - boardHeight;
+		ctx.clearRect(0, 0, width, height);
 		ctx.beginPath();
 		ctx.fillRect(x, yPoint, boardWidth, boardHeight);
 	}
 
-	function update(elapsed) {
-
+	function update(elapsed, moveValue) {
+		x += moveValue * (elapsed / 1000) * speed * boardWidth;
 	}
 
 	return {
@@ -33,18 +35,27 @@ board = (function() {
 })();
 
 controller = (function(){
+	var moveValue = 0;
+
+	function update(elapsed) {
+		board.update(elapsed, moveValue);
+		moveValue = 0;
+	}
 
 	function draw(ctx) {
 		board.draw(ctx);
 	}
 
-	function update(elapsed) {
-		board.update(elapsed);
+	function movement(value){
+		if (typeof value === 'number') {
+			moveValue += value;
+		}
 	}
 
 	return {
 		draw: draw,
-		update: update
+		update: update,
+		movement: movement
 	};
 })();
 
@@ -70,5 +81,15 @@ function loopIt() {
 
 	loop();
 }
+
+key = (function(target){
+	target.addEventListener("keydown", function(e){
+		if (e.keyCode === 37) {
+			controller.movement(-1);
+		} else if (e.keyCode === 39) {
+			controller.movement(1);
+		}
+	} );
+})(document);
 
 loopIt();
