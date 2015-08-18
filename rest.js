@@ -4,6 +4,7 @@ function loopIt() {
 		frameLength = 33;
 
 	function loop() {
+		_tester.start();
 		var thisFrame = Date.now(),
 			elapsed = thisFrame - lastFrame;
 
@@ -11,6 +12,8 @@ function loopIt() {
 		controller.draw(surface);
 
 		lastFrame = thisFrame;
+
+		_tester.end();
 
 		frameID = window.requestAnimationFrame(loop);
 	}

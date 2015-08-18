@@ -36,8 +36,6 @@ controller = (function(){
 		moveValue = value;
 	}
 
-	console.log(values);
-
 	return {
 		draw: draw,
 		update: update,
