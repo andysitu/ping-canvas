@@ -15,6 +15,7 @@ controller = (function(){
 	function draw(ctx) {
 		clearBoard(ctx);
 		board.draw(ctx);
+		ball.draw(ctx);
 	}
 
 	function movement(value){
