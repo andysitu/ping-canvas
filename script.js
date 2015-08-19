@@ -3,7 +3,8 @@ var board,
 	controller,
 	surface,
 	key,
-	ball;
+	ball,
+	hit;
 
 canvas = document.getElementById("canvas");
 surface = canvas.getContext('2d');
