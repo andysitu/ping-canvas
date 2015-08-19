@@ -29,7 +29,6 @@ controller = (function(){
 		board.update(v, elapsed, moveValue);
 		moveValue = 0;
 		ball.update(v, elapsed);
-		hit.hitBoard(v.x, v.boardWidth, v.yPoint, v.xBall, v.yBall, v.radius);
 	}
 
 	function draw(ctx) {

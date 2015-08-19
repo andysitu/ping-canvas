@@ -6,12 +6,13 @@ hit = (function() {
 		if (ballY > top) {
 			if (ballX > x && ballX < xEnd) {
 				if (ballY < top + radius) {
-					console.log("top");
+					return true;
 				} else {
-					console.log("side")
+					return true;
 				}
 			}
 		} else {
+			return false;
 		}
 	}
 

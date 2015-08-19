@@ -18,6 +18,8 @@ ball = (function() {
           obj.vy = -obj.vy;
         } else if (obj.xBall + obj.vx > obj.width || obj.xBall + obj.vx < 0) {
           obj.vx = - obj.vx;
+		} else if (hit.hitBoard(obj.x, obj.boardWidth, obj.yPoint, obj.xBall, obj.yBall, obj.radius) !== false) {
+		  obj.vy = -obj.vy;
 		}
 	}
 
