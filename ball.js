@@ -19,9 +19,6 @@ ball = (function() {
         } else if (obj.xBall + obj.vx > obj.width || obj.xBall + obj.vx < 0) {
           obj.vx = - obj.vx;
 		} else if (hit.hitBoard(obj.x, obj.boardWidth, obj.yPoint, obj.xBall, obj.yBall, obj.radius) !== false) {
-		  if (Math.random() >= 0.5) {
-		  	obj.vx = - obj.vx;
-		  }
 		  obj.vy = -obj.vy;
 		}
 	}
